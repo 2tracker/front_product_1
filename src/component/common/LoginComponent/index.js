@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import OTPInput from 'react-otp-input';
 
 function Login() {
   const [modalIsOpen, setIsOpen] = useState(0)
