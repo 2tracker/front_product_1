@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
-import { Route, Router, Routes } from 'react-router-dom';
-import LoginPage from './Page/loginpage';
-import RegistrationPage from './Page/registrationPage';
+import { Route, Routes } from 'react-router-dom';
+import RegistrationPage from './Page/RegistrationPage';
+import LoginPage from './Page/LoginPage/index';
 
 function App() {
   return (
