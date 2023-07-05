@@ -1,14 +1,14 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import RegistrationPage from './Page/registrationpage';
-import LoginPage from './Page/loginpage';
+import Loginpage from './Page/Loginpage';
+import Registrationpage from './Page/Registrationpage';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<LoginPage/>}/>
-        <Route path='/signup' element={<RegistrationPage/>}/>
+        <Route path='/' element={<Loginpage/>}/>
+        <Route path='/signup' element={<Registrationpage/>}/>
       </Routes>
     </div>
   );

@@ -210,8 +210,8 @@ function Register() {
                   </div>
                   <div>
                     <p className="text-center text-[12px] pt-2">
-                      If You Have No Account{" "}
-                      <Link to="/signup">
+                      If You Have Account{" "}
+                      <Link to="/">
                         <span className="text-blue-400 text-[14px] cursor-pointer">
                           Sign in
                         </span>{" "}
