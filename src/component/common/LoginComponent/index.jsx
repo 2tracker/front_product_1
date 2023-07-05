@@ -89,7 +89,7 @@ function Login() {
 
       <div className="bg-no-repeat bg-cover bg-center relative">
         <div className="absolute bg-login-page inset-0 z-0 max-[479px]:!h-full"></div>
-        <div className="container mx-auto !px-20 max-[1200px]:!px-0 max-[1024px]:!px-8  max-[991px]:min-w-full max-[479px]:py-20 max-[479px]:px-4">
+        <div className="container mx-auto !px-20 max-[1200px]:!px-0 max-[1024px]:!px-8  max-[991px]:min-w-full max-[479px]:px-4">
           <div className="min-h-screen grid grid-cols-2 mx-0 justify-center gap-8 max-[991px]:gap-0 max-[576px]:grid-cols-1  max-[576px]:content-center	">
           <div className="flex-col flex  self-center p-10 max-[1024px]:!px-0 sm:max-w-5xl xl:max-w-2xl  z-10 max-[479px]:!pt-0">
             <div className="self-start  lg:flex flex-col  text-black max-[576px]:self-center max-[576px]:text-center">
@@ -120,22 +120,6 @@ function Login() {
                     className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
                     type=""
                     placeholder="mail@gmail.com"
-                  />
-                  {errorEmail && (
-                    <p className="text-[12px] text-[#FF000F] font-no">
-                      Please enter a valid email
-                    </p>
-                  )}
-                </div>
-                <div className="space-y-2 text-left">
-                  <label className="text-sm font-medium text-gray-700 tracking-wide">
-                    Password
-                  </label>
-                  <input
-                    onChange={(e) => handleEmailChange(e)}
-                    className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
-                    type="password"
-                    placeholder="Password"
                   />
                   {errorEmail && (
                     <p className="text-[12px] text-[#FF000F] font-no">
