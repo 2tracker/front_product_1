@@ -89,17 +89,16 @@ function Login() {
 
       <div className="bg-no-repeat bg-cover bg-center relative">
         <div className="absolute bg-login-page inset-0 z-0"></div>
-        <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+          <div className="container mx-auto">
+          <div className="min-h-screen sm:flex sm:flex-row mx-0 justify-center gap-8 ">
           <div className="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
-            <div className="self-start hidden lg:flex flex-col  text-black">
+            <div className="self-start  lg:flex flex-col  text-black">
               <img src="" className="mb-3" />
               <h1 className="mb-3 font-bold text-5xl opacity-[0.6]">
                 Hi ? Welcome Back Track{" "}
               </h1>
               <p className="pr-3">
-                Lorem ipsum is placeholder text commonly used in the graphic,
-                print, and publishing industries for previewing layouts and
-                visual mockups
+                To keep connected with us please login with your personal details
               </p>
             </div>
           </div>
@@ -107,9 +106,9 @@ function Login() {
             <div className="p-12 bg-login-box mx-auto ">
               <div className="mb-4">
                 <h3 className="font-semibold text-2xl text-gray-800">
-                  Sign In{" "}
+                  Sign In to Track
                 </h3>
-                <p className="text-gray-500">Please sign in to your account.</p>
+                <p className="text-gray-500 pt-1">Please sign in to your account.</p>
               </div>
               <div className="space-y-5">
                 <div className="space-y-2 text-left">
@@ -159,6 +158,7 @@ function Login() {
             </div>
           </div>
         </div>
+          </div>
       </div>
     </div>
   );
