@@ -115,21 +115,25 @@ function Register() {
                       </label>
                       <input
                         onChange={(e) => handleEmailChange(e)}
+                        name="first_name"
+                        id="first_name"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your First Name"
-                      />
+                        />
                     </div>
                     <div>
                       <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Last Name
                       </label>
                       <input
+                        name="last_name"
+                        id="last_name"
                         onChange={(e) => handleEmailChange(e)}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your Last Name"
-                      />
+                        />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
@@ -139,6 +143,8 @@ function Register() {
                         </label>
                         <input
                         onChange={(e) => handleEmailChange(e)}
+                        name="email"
+                        id="email"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="email"
                         placeholder="Enter Your Email Address"
@@ -149,6 +155,8 @@ function Register() {
                         Mobile Number
                         </label>
                         <input
+                        name="mobile_number"
+                        id="mobile_number"
                         onChange={(e) => handleEmailChange(e)}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="tel"
@@ -162,6 +170,8 @@ function Register() {
                         Password
                         </label>
                         <input
+                        name="password"
+                        id="password"
                         onChange={(e) => handleEmailChange(e)}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="password"
@@ -174,6 +184,8 @@ function Register() {
                     </label>
                     <input
                       onChange={(e) => handleEmailChange(e)}
+                      name="confirm_password"
+                      id="confirm_password"
                       className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                       type="password"
                       placeholder="Password"
@@ -185,14 +197,14 @@ function Register() {
                         <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Pancard File
                         </label>
-                        <input type="file" id="myfile" name="myfile" className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none " />
+                        <input type="file" id="pan_card" name="pan_card" className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none " />
 
                     </div>
                     <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium text-gray-700 tracking-wide">
                     Adharcard File
                     </label>
-                    <input type="file" id="myfile" name="myfile"  className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none"/>
+                    <input type="file" id="aadhar_card" name="myfile"  className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none"/>
 
                     </div>
                   </div>
@@ -209,7 +221,7 @@ function Register() {
                     </button>
                   </div>
                   <div>
-                    <p className="text-center text-[12px] pt-2">
+                    <p className="text-center text-[12px] pt-4">
                       If You Have Account{" "}
                       <Link to="/">
                         <span className="text-blue-400 text-[14px] cursor-pointer">

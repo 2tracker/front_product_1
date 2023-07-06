@@ -118,7 +118,7 @@ function Login() {
                   <input
                     onChange={(e) => handleEmailChange(e)}
                     className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
-                    type=""
+                    type="email"
                     placeholder="mail@gmail.com"
                   />
                   {errorEmail && (
@@ -135,8 +135,8 @@ function Login() {
                     Sign in
                   </button>
                 </div>
-                <div>
-                      <p className="text-center text-[12px] my-0">If You Have No Account <Link to='/signup'><span className="text-blue-400 text-[14px] cursor-pointer">Sign Up</span> </Link></p>
+                <div className="!mt-0 ">
+                      <p className="text-center text-[12px] pt-4">If You Have No Account <Link to='/signup'><span className="text-blue-400 text-[14px] cursor-pointer">Sign Up</span> </Link></p>
                     </div>
               </div>
             </div>
