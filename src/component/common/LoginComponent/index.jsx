@@ -95,7 +95,7 @@ function Login() {
             <div className="self-start  lg:flex flex-col  text-black max-[576px]:self-center max-[576px]:text-center">
               <img src="" className="mb-3" />
               <h1 className="mb-3 font-bold text-5xl opacity-[0.6] max-[991px]:text-[42px] max-[771px]:text-[36px] max-[479px]:text-[32px]">
-                Hi ? Welcome Back Track{" "}
+                Hi ? Welcome Back{" "}
               </h1>
               <p className="pr-3 max-[576px]:pr-0">
                 To keep connected with us please login with your personal details
