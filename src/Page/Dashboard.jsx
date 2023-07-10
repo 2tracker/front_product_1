@@ -5,7 +5,6 @@ function Dashboard(props) {
     return (
         <div>
             <DashBorad/>
-
         </div>
     );
 }

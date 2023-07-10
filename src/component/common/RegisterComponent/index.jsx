@@ -1,90 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../../utils/Constant/constant";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Register() {
-  const [modalIsOpen, setIsOpen] = useState(0);
-  const [mobile, SetMobile] = useState();
-  const [otpdata, setOtpdata] = useState([]);
-  const [errOtp, setErrorOtp] = useState(false);
-  const [time, setTime] = useState(60);
-  const [IstimeActive, setIsTimeActive] = useState(true);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [email, setEmail] = useState("");
-
+  const [registerData, setRegisterData] = useState([]);
+  const [panCard, setPanCard] = useState([]);
+  const [aadharCard, setAadharCard] = useState([]);
+  const navigate = useNavigate();
+  const formData = new FormData();
   const handleChange = (e) => {
-    // setOtpdata(e)
-    const valueotp = e;
-    const extractedOtp = valueotp.replace(/\D/g, "");
-    setOtpdata(extractedOtp);
-
-    if (extractedOtp?.length === 4) {
-      setErrorOtp(false);
-    } else {
-      setErrorOtp(true);
+    if (e.target.name === "pan_card") {
+      setPanCard(e.target.files[0]);
     }
+    if (e.target.name === "aadhar_card") {
+      setAadharCard(e.target.files[0]);
+    }
+    setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
-
-  const handleChangeNumber = (e) => {
-    const inputValue = e.target.value;
-    const extractedNumber = inputValue.replace(/\D/g, "");
-    if (extractedNumber?.length === 10) {
-      SetMobile(extractedNumber);
-    }
-    if (extractedNumber?.length < 10) {
-      SetMobile(extractedNumber);
-    }
+  console.log(panCard, "panCard");
+  const handleClick = () => {
+    formData.append("pan_card", panCard);
+    formData.append("aadhar_card", aadharCard);
+    // Append string values to the FormData object
+    formData.append("first_name", registerData.first_name);
+    formData.append("last_name", registerData?.last_name);
+    formData.append("email", registerData?.email);
+    formData.append("mobile_number", registerData?.mobile_number);
+    formData.append("password", registerData?.password);
+    formData.append("confirm_password", registerData?.confirm_password);
+    console.log(registerData, "registerData");
+    axios
+      .post(`${BASE_URL}/admin/register`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        if (res.data.message) {
+          toast(res.data.message);
+          setTimeout(() => {
+            navigate("/");
+          }, [4000]);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.data.error, "errr");
+        toast.error(err.response.data.error);
+      });
   };
-
-  const handleNumberEdit = () => {
-    setIsOpen(0);
-    setOtpdata([]);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    let Interval;
-
-    if (IstimeActive) {
-      Interval = setInterval(() => {
-        setTime((prevTime) => {
-          if (prevTime > 0) {
-            return prevTime - 1;
-          } else {
-            setIsTimeActive(false);
-            clearInterval(Interval);
-            return 0;
-          }
-        });
-      }, 1000);
-    }
-    return () => {
-      clearInterval(Interval);
-    };
-  }, [IstimeActive]);
-
-  useEffect(() => {
-    if (time === 0) {
-      setIsTimeActive(false);
-    }
-  }, [time]);
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-    const emailErr = event.target.value.replace(
-      /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/g,
-      ""
-    );
-    if (!emailErr) {
-      setErrorEmail(false);
-    } else {
-      setErrorEmail(true);
-    }
-  };
-
+  console.log(registerData);
   return (
     <div>
+      <ToastContainer />
       <div className="bg-no-repeat bg-cover bg-center relative">
         <div className="absolute bg-login-page inset-0 z-0 max-[479px]:!h-full"></div>
         <div className="container mx-auto !px-20 max-[1200px]:!px-0 max-[1024px]:!px-8 max-[991px]:min-w-full max-[479px]:py-20  max-[479px]:px-4">
@@ -114,106 +84,117 @@ function Register() {
                         First Name
                       </label>
                       <input
-                        onChange={(e) => handleEmailChange(e)}
                         name="first_name"
+                        onChange={(e) => handleChange(e)}
                         id="first_name"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your First Name"
-                        />
+                      />
                     </div>
                     <div>
                       <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Last Name
                       </label>
                       <input
+                        onChange={(e) => handleChange(e)}
                         name="last_name"
                         id="last_name"
-                        onChange={(e) => handleEmailChange(e)}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your Last Name"
-                        />
+                      />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
-                        <label className="text-sm font-medium text-gray-700 tracking-wide">
-                        Email 
-                        </label>
-                        <input
-                        onChange={(e) => handleEmailChange(e)}
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                        Email
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
                         name="email"
                         id="email"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="email"
                         placeholder="Enter Your Email Address"
-                        />
+                      />
                     </div>
                     <div>
-                        <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Mobile Number
-                        </label>
-                        <input
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
                         name="mobile_number"
                         id="mobile_number"
-                        onChange={(e) => handleEmailChange(e)}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="tel"
                         placeholder="Enter Your mobile number"
-                        />
+                      />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
-                        <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Password
-                        </label>
-                        <input
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
                         name="password"
                         id="password"
-                        onChange={(e) => handleEmailChange(e)}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="password"
                         placeholder="Password"
-                        />
+                      />
                     </div>
                     <div>
-                    <label className="text-sm font-medium text-gray-700 tracking-wide">
-                     Confirm Password
-                    </label>
-                    <input
-                      onChange={(e) => handleEmailChange(e)}
-                      name="confirm_password"
-                      id="confirm_password"
-                      className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
-                      type="password"
-                      placeholder="Password"
-                    />
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                        Confirm Password
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="confirm_password"
+                        id="confirm_password"
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="password"
+                        placeholder="Password"
+                      />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div className="flex flex-col gap-2">
-                        <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Pancard File
-                        </label>
-                        <input type="file" id="pan_card" name="pan_card" className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none " />
-
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        type="file"
+                        multiple
+                        id="pan_card"
+                        name="pan_card"
+                        className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none "
+                      />
                     </div>
                     <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium text-gray-700 tracking-wide">
-                    Adharcard File
-                    </label>
-                    <input type="file" id="aadhar_card" name="myfile"  className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none"/>
-
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                        Adharcard File
+                      </label>
+                      <input
+                        type="file"
+                        multiple
+                        onChange={(e) => handleChange(e)}
+                        id="aadhar_card"
+                        name="aadhar_card"
+                        className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none"
+                      />
                     </div>
                   </div>
                 </div>
-
                 <div className="mt-8">
-            
                   <div>
                     <button
+                      onClick={() => handleClick()}
                       type="submit"
                       className="w-full flex justify-center bg-blue-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                     >
