@@ -1,23 +1,48 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../../utils/Constant/constant";
 
 function Login() {
   const [loginData, setLoginData] = useState([{ email: "" }]);
   const [otpPage, setOtpPage] = useState(false);
   const [otp, setOtp] = useState("");
-  const handleSubmit = () =>{
+  const navigate = useNavigate()
+  const handleSubmit = () => {
     const body = {
       email:loginData.email,
       otp:otp
     }
-    axios.post('http://localhost:9090/admin/login',body).then((res)=>{
-      console.log(res,"res")
+    axios.post(`${BASE_URL}/admin/login`,body).then((res)=>{
+      if(res.status === 200){
+        toast.success(res.data.MSG);
+        localStorage.setItem("Token",res.data.Token)
+        setTimeout(()=>{
+          navigate('/dashboard');
+         },[2000])
+      }
+    })
+  }
+  const handleClick = () => {
+    const body = {
+      email:loginData.email,
+    }
+    axios.post(`${BASE_URL}/admin/sendotp`,body).then((res)=>{
+      console.log(res,"res");
+      if(res?.data?.MSG === "sendOTP"){
+       setTimeout(()=>{
+        setOtpPage(true)
+       },[2000])
+        toast('Send OTP in your E-mail');
+      }
     })
   }
   return (
     <div>
+      <ToastContainer/>
       <div className="bg-no-repeat bg-cover bg-center relative">
         <div className="absolute bg-login-page inset-0 z-0 max-[479px]:!h-full"></div>
         <div className="container mx-auto !px-20 max-[1200px]:!px-0 max-[1024px]:!px-8  max-[991px]:min-w-full max-[479px]:px-4">
@@ -63,7 +88,7 @@ function Login() {
                       <button
                         type="submit"
                         className="w-full flex justify-center bg-blue-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
-                        onClick={() => setOtpPage(true)}
+                        onClick={() => {handleClick()}}
                       >
                         Sign in
                       </button>
@@ -81,6 +106,9 @@ function Login() {
                   </div>
                 ) : (
                   <div>
+                    <div>
+                      <p  className="mb-4 font-semibold">Enter OTP</p>
+                      </div>
                     <OtpInput
                       value={otp}
                       onChange={setOtp}

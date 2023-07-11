@@ -31,7 +31,6 @@ function Register() {
     formData.append("mobile_number", registerData?.mobile_number);
     formData.append("password", registerData?.password);
     formData.append("confirm_password", registerData?.confirm_password);
-    console.log(registerData, "registerData");
     axios
       .post(`${BASE_URL}/admin/register`, formData, {
         headers: {
