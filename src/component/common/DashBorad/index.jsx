@@ -16,7 +16,7 @@ function DashBorad() {
       <>
         <div className="flex">
           <div
-            className={`bg-light-blue h-screen p-5 pt-8 ${
+            className={`bg-gradient-to-br from-blue-100 to-silver-50 h-screen p-5 pt-8 ${
               sidebarOpen ? "w-72" : "w-20"
             } duration-300  relative`}
           >
@@ -24,8 +24,8 @@ function DashBorad() {
               onClick={() => setSidebarOpen(!sidebarOpen)}/> */}
 
             <div className="inline-flex gap-3"  onClick={() => setSidebarOpen(!sidebarOpen)}>
-              <FaBars className={`bg-white text-3xl p-1 cursor-pointer rounded block float-left duration-500 ${sidebarOpen && "rotate-[360deg]"}`}/>
-              <h1 className={`text-xl font-medium origin-left text-white duration-300 ${!sidebarOpen && "scale-0"}`}>Tracker</h1>
+              <FaBars className={` text-3xl p-1 cursor-pointer rounded block float-left duration-500 ${sidebarOpen && "rotate-[360deg]"}`}/>
+              <h1 className={`text-xl font-medium origin-left text-black duration-300 ${!sidebarOpen && "scale-0"}`}>Tracker</h1>
             </div>
 
             <div className={`flex items-center rounded-md bg-white mt-6 ${!sidebarOpen ? "px-2.5" : "px-4"} py-2`}>
@@ -37,7 +37,7 @@ function DashBorad() {
               {DashboardMenus?.map((menudata, index) => {
                 return(
                   <>
-                    <li key={index} className={`text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md  ${menudata?.spacing ? "mt-9" : "mt-2"}`}>
+                    <li key={index} className={`text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md  ${menudata?.spacing ? "mt-9" : "mt-2"}`}>
                       <span className="text-2xl block float-left">
                         {menudata?.icon ? menudata?.icon : <RiDashboardFill/>}
                       </span>

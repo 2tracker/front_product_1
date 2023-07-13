@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../../utils/Constant/constant";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Register() {
   const [registerData, setRegisterData] = useState([]);
@@ -39,7 +38,7 @@ function Register() {
       })
       .then((res) => {
         if (res.data.message) {
-          toast(res.data.message);
+          toast.success(res.data.message);
           setTimeout(() => {
             navigate("/");
           }, [4000]);
@@ -50,10 +49,9 @@ function Register() {
         toast.error(err.response.data.error);
       });
   };
-  console.log(registerData);
   return (
     <div>
-      <ToastContainer />
+      <Toaster />
       <div className="bg-no-repeat bg-cover bg-center relative">
         <div className="absolute bg-login-page inset-0 z-0 max-[479px]:!h-full"></div>
         <div className="container mx-auto !px-20 max-[1200px]:!px-0 max-[1024px]:!px-8 max-[991px]:min-w-full max-[479px]:py-20  max-[479px]:px-4">
@@ -195,7 +193,7 @@ function Register() {
                     <button
                       onClick={() => handleClick()}
                       type="submit"
-                      className="w-full flex justify-center bg-blue-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
+                      className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                     >
                       Sign Up
                     </button>
