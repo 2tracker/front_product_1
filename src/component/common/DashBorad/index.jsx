@@ -51,7 +51,7 @@ function DashBorad() {
                         {menudata?.submenuItems?.map((submenuItem, index) =>{
                           return(
                             <>
-                              <li key={index} className="text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-white hover:text-black rounded-md px-5">
+                              <li key={index} className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5">
                                 {submenuItem?.title}
                               </li>
                             </>
