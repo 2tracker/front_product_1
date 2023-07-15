@@ -4,12 +4,38 @@ import OtpInput from "react-otp-input";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { BASE_URL } from "../../../utils/Constant/constant";
+import { FormProvider, useForm } from "react-hook-form";
+import { Input } from "../ValidationForm";
+import { email_validation } from "../../../utils/formValidation/inputValidations";
 
 function Login() {
   const [loginData, setLoginData] = useState([{ email: "" }]);
   const [otpPage, setOtpPage] = useState(false);
   const [otp, setOtp] = useState("");
+  const [success, setSuccess] = useState(false)
+
   const navigate = useNavigate()
+  const methods = useForm()
+
+  console.log(loginData, "loginDataloginData");
+
+  const onSubmit = methods.handleSubmit(data => {
+    methods.reset()
+    setSuccess(true)
+    const body = {
+      email:data?.email,
+    }
+    axios.post(`${BASE_URL}/admin/sendotp`,body).then((res)=>{
+      console.log(res,"res");
+      if(res?.data?.MSG === "sendOTP"){
+       setTimeout(()=>{
+        setOtpPage(true)
+       },[2000])
+        toast.success('Send OTP in your E-mail');
+      }
+    })
+  })
+
   const handleSubmit = () => {
     const body = {
       email:loginData.email,
@@ -27,20 +53,7 @@ function Login() {
       toast.error(err)
     })
   }
-  const handleClick = () => {
-    const body = {
-      email:loginData.email,
-    }
-    axios.post(`${BASE_URL}/admin/sendotp`,body).then((res)=>{
-      console.log(res,"res");
-      if(res?.data?.MSG === "sendOTP"){
-       setTimeout(()=>{
-        setOtpPage(true)
-       },[2000])
-        toast.success('Send OTP in your E-mail');
-      }
-    })
-  }
+
   return (
     <div>
       <Toaster/>
@@ -71,7 +84,9 @@ function Login() {
                   </p>
                 </div>
                 {!otpPage ? (
-                  <div className="space-y-5">
+                      <FormProvider {...methods}>
+
+                  <form className="space-y-5">
                     <div className="space-y-2 text-left">
                       <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Email OR Number
@@ -84,12 +99,16 @@ function Login() {
                           setLoginData({ ...loginData, email: e.target.value });
                         }}
                       />
+                    <Input {...email_validation} onChange={(e) => {
+                          setLoginData({ ...loginData, email: e.target.value });
+                        }} />
+
                     </div>
                     <div>
                       <button
                         type="submit"
+                        onClick={onSubmit}
                         className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
-                        onClick={() => {handleClick()}}
                       >
                         Sign in
                       </button>
@@ -104,7 +123,9 @@ function Login() {
                         </Link>
                       </p>
                     </div>
-                  </div>
+                  </form>
+                  </FormProvider>
+
                 ) : (
                   <div>
                     <div>

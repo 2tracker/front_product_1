@@ -23,9 +23,17 @@ function DashBorad() {
             {/* <BiArrowBack className={` bg-white text-3xl p-2 rounded-full border border-light-blue absolute top-9 -right-3 cursor-pointer ${!sidebarOpen && 'rotate-180'}`}
               onClick={() => setSidebarOpen(!sidebarOpen)}/> */}
 
-            <div className="inline-flex gap-3"  onClick={() => setSidebarOpen(!sidebarOpen)}>
-              <FaBars className={` text-3xl p-1 cursor-pointer rounded block float-left duration-500 ${sidebarOpen && "rotate-[360deg]"}`}/>
-              <h1 className={`text-xl font-medium origin-left text-black duration-300 ${!sidebarOpen && "scale-0"}`}>Tracker</h1>
+            <div className="inline-flex gap-3 w-full"  onClick={() => setSidebarOpen(!sidebarOpen)}>
+              {sidebarOpen ? 
+            
+            // <img src="/assets/time-logo.png" className="w-48 h-auto"/>
+            <img src="/assets/tbrand-logo.png" className="w-24 h-auto"/>
+            :
+            <img src="/assets/tbrand-logo.png" className="w-24 h-auto"/>
+              
+            }
+              {/* <FaBars className={` text-3xl p-1 cursor-pointer rounded block float-left duration-500 ${sidebarOpen && "rotate-[360deg]"}`}/>
+              <h1 className={`text-xl font-medium origin-left text-black duration-300 ${!sidebarOpen && "scale-0"}`}>Tracker</h1> */}
               {/* <img src="./assets/logo.png" width={70} height={70}/> */}
             </div>
 

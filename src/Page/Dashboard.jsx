@@ -1,7 +1,7 @@
 import React from 'react';
 import DashBorad from '../component/common/DashBorad';
 
-function Dashboard(props) {
+function Dashboardpage(props) {
     return (
         <div>
             <DashBorad/>
@@ -9,4 +9,4 @@ function Dashboard(props) {
     );
 }
 
-export default Dashboard;
+export default Dashboardpage;
