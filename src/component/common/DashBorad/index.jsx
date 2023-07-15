@@ -26,6 +26,7 @@ function DashBorad() {
             <div className="inline-flex gap-3"  onClick={() => setSidebarOpen(!sidebarOpen)}>
               <FaBars className={` text-3xl p-1 cursor-pointer rounded block float-left duration-500 ${sidebarOpen && "rotate-[360deg]"}`}/>
               <h1 className={`text-xl font-medium origin-left text-black duration-300 ${!sidebarOpen && "scale-0"}`}>Tracker</h1>
+              {/* <img src="./assets/logo.png" width={70} height={70}/> */}
             </div>
 
             <div className={`flex items-center rounded-md bg-white mt-6 ${!sidebarOpen ? "px-2.5" : "px-4"} py-2`}>
