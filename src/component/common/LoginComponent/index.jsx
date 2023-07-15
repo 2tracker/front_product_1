@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OtpInput from "react-otp-input";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 import { BASE_URL } from "../../../utils/Constant/constant";
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "../ValidationForm";
@@ -11,59 +11,62 @@ import { email_validation } from "../../../utils/formValidation/inputValidations
 function Login() {
   const [loginData, setLoginData] = useState([{ email: "" }]);
   const [otpPage, setOtpPage] = useState(false);
+  const [emailData, setEmailData] = useState();
   const [otp, setOtp] = useState("");
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
-  const navigate = useNavigate()
-  const methods = useForm()
+  const navigate = useNavigate();
+  const methods = useForm();
 
-  console.log(loginData, "loginDataloginData");
-
-  const onSubmit = methods.handleSubmit(data => {
-    methods.reset()
-    setSuccess(true)
+  const onSubmit = methods.handleSubmit((data) => {
+    setEmailData(data);
+    methods.reset();
+    setSuccess(true);
     const body = {
-      email:data?.email,
-    }
-    axios.post(`${BASE_URL}/admin/sendotp`,body).then((res)=>{
-      console.log(res,"res");
-      if(res?.data?.MSG === "sendOTP"){
-       setTimeout(()=>{
-        setOtpPage(true)
-       },[2000])
-        toast.success('Send OTP in your E-mail');
+      email: data?.email,
+    };
+    axios.post(`${BASE_URL}/admin/sendotp`, body).then((res) => {
+      console.log(res, "res");
+      if (res?.data?.MSG === "sendOTP") {
+        setTimeout(() => {
+          setOtpPage(true);
+        }, [2000]);
+        toast.success(`Send OTP in your E-mail : ${res.data.otp}`);
       }
-    })
-  })
+    });
+  });
 
   const handleSubmit = () => {
     const body = {
-      email:loginData.email,
-      otp:otp
-    }
-    axios.post(`${BASE_URL}/admin/login`,body).then((res)=>{
-      if(res.status === 200){
-        toast.success(res.data.MSG);
-        localStorage.setItem("Token",res.data.Token)
-        setTimeout(()=>{
-          navigate('/dashboard');
-         },[2000])
-      }
-    }).catch((err)=>{
-      toast.error(err)
-    })
-  }
+      email: emailData.email,
+      otp: otp,
+    };
+    axios
+      .post(`${BASE_URL}/admin/login`, body)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(res.data.MSG);
+          localStorage.setItem("Token", res.data.Token);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, [2000]);
+        }
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
 
   return (
     <div>
-      <Toaster/>
+      <Toaster />
       <div className="bg-no-repeat bg-cover bg-center relative">
         <div className="absolute bg-login-page inset-0 z-0 max-[479px]:!h-full"></div>
         <div className="container mx-auto !px-20 max-[1200px]:!px-0 max-[1024px]:!px-8  max-[991px]:min-w-full max-[479px]:px-4">
           <div className="min-h-screen grid grid-cols-2 mx-0 justify-center gap-8 max-[991px]:gap-0 max-[576px]:grid-cols-1  max-[576px]:content-center	">
             <div className="flex-col flex  self-center p-10 max-[1024px]:!px-0 sm:max-w-5xl xl:max-w-2xl  z-10 max-[479px]:!pt-0">
               <div className="self-start  lg:flex flex-col  text-black max-[576px]:self-center max-[576px]:text-center">
-                <img src="" className="mb-3" alt=""/>
+                <img src="" className="mb-3" alt="" />
                 <h1 className="mb-3 font-bold text-5xl opacity-[0.6] max-[991px]:text-[42px] max-[771px]:text-[36px] max-[479px]:text-[32px]">
                   Hi ? Welcome Back{" "}
                 </h1>
@@ -84,53 +87,45 @@ function Login() {
                   </p>
                 </div>
                 {!otpPage ? (
-                      <FormProvider {...methods}>
-
-                  <form className="space-y-5">
-                    <div className="space-y-2 text-left">
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
-                        Email OR Number
-                      </label>
-                      <input
-                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
-                        type="email"
-                        placeholder="mail@gmail.com"
-                        onChange={(e) => {
-                          setLoginData({ ...loginData, email: e.target.value });
-                        }}
-                      />
-                    <Input {...email_validation} onChange={(e) => {
-                          setLoginData({ ...loginData, email: e.target.value });
-                        }} />
-
-                    </div>
-                    <div>
-                      <button
-                        type="submit"
-                        onClick={onSubmit}
-                        className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
-                      >
-                        Sign in
-                      </button>
-                    </div>
-                    <div className="!mt-0 ">
-                      <p className="text-center text-[12px] pt-4">
-                        If You Have No Account{" "}
-                        <Link to="/signup">
-                          <span className="text-blue-400 text-[14px] cursor-pointer">
-                            Sign Up
-                          </span>{" "}
-                        </Link>
-                      </p>
-                    </div>
-                  </form>
+                  <FormProvider {...methods}>
+                    <form className="space-y-5">
+                      <div className="space-y-2 text-left">
+                        <Input
+                          {...email_validation}
+                          onChange={(e) => {
+                            setLoginData({
+                              ...loginData,
+                              email: e.target.value,
+                            });
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <button
+                          type="submit"
+                          onClick={onSubmit}
+                          className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
+                        >
+                          Sign in
+                        </button>
+                      </div>
+                      <div className="!mt-0 ">
+                        <p className="text-center text-[12px] pt-4">
+                          If You Have No Account{" "}
+                          <Link to="/signup">
+                            <span className="text-blue-400 text-[14px] cursor-pointer">
+                              Sign Up
+                            </span>{" "}
+                          </Link>
+                        </p>
+                      </div>
+                    </form>
                   </FormProvider>
-
                 ) : (
                   <div>
                     <div>
-                      <p  className="mb-4 font-semibold">Enter OTP</p>
-                      </div>
+                      <p className="mb-4 font-semibold">Enter OTP</p>
+                    </div>
                     <OtpInput
                       value={otp}
                       onChange={setOtp}
