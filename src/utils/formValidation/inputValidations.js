@@ -7,11 +7,28 @@
 *-------------------------------------------------------------------*/
 
 export const name_validation = {
-  name: 'name',
-  label: 'name',
+  name: 'first_name',
+  label: 'First Name',
   type: 'text',
-  id: 'name',
-  placeholder: 'write your name ...',
+  id: 'first_name',
+  placeholder: 'Enter Your First Name',
+  validation: {
+    required: {
+      value: true,
+      message: 'required',
+    },
+    maxLength: {
+      value: 30,
+      message: '30 characters max',
+    },
+  },
+}
+export const last_name_validation = {
+  name: 'last_name',
+  label: 'Last Name',
+  type: 'text',
+  id: 'last_name',
+  placeholder: 'Enter Your Last Name',
   validation: {
     required: {
       value: true,
@@ -60,12 +77,43 @@ export const password_validation = {
   },
 }
 
-export const num_validation = {
-  name: 'num',
-  label: 'number',
-  type: 'number',
-  id: 'num',
-  placeholder: 'write a random number',
+export const mobilenum_validation = {
+  name: 'mobile_number',
+  label: 'Mobile Number',
+  type: 'tel',
+  id: 'mobile_number',
+  placeholder: 'Enter Your mobile number',
+  validation: {
+    required: {
+      value: true,
+      message: 'required',
+    },
+    pattern: {
+      value:
+      /\D/g,
+      message: 'please enter valid number',
+    },
+  },
+}
+
+export const pancard_validation = {
+  name: 'pan_card',
+  label: 'Pancard File',
+  type: 'file',
+  id: 'pan_card',
+  validation: {
+    required: {
+      value: true,
+      message: 'required',
+    },
+  },
+}
+
+export const aadharcard_validation = {
+  name: 'aadhar_card',
+  label: 'Aadharcard File',
+  type: 'file',
+  id: 'aadhar_card',
   validation: {
     required: {
       value: true,

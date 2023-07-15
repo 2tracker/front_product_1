@@ -13,10 +13,11 @@ function Login() {
   const [otpPage, setOtpPage] = useState(false);
   const [emailData, setEmailData] = useState();
   const [otp, setOtp] = useState("");
-  const [success, setSuccess] = useState(false);
+    const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
   const methods = useForm();
+  
 
   const onSubmit = methods.handleSubmit((data) => {
     setEmailData(data);

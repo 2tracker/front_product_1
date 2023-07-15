@@ -17,7 +17,7 @@ function DashBorad() {
         <div className="flex">
           <div
             className={`bg-gradient-to-br from-blue-100 to-silver-50 h-screen p-5 pt-8 ${
-              sidebarOpen ? "w-72" : "w-20"
+              sidebarOpen ? "w-64" : "w-20"
             } duration-300  relative`}
           >
             {/* <BiArrowBack className={` bg-white text-3xl p-2 rounded-full border border-light-blue absolute top-9 -right-3 cursor-pointer ${!sidebarOpen && 'rotate-180'}`}

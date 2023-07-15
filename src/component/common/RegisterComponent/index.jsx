@@ -3,14 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../../utils/Constant/constant";
 import toast, { Toaster } from 'react-hot-toast';
+import { aadharcard_validation, email_validation, last_name_validation, mobilenum_validation, name_validation, pancard_validation } from "../../../utils/formValidation/inputValidations";
+import { Input } from "../ValidationForm";
+import { FormProvider, useForm } from "react-hook-form";
 
 function Register() {
   const [registerData, setRegisterData] = useState([]);
   const [panCard, setPanCard] = useState([]);
   const [aadharCard, setAadharCard] = useState([]);
+  const [success, setSuccess] = useState(false);
+  
   const navigate = useNavigate();
   const formData = new FormData();
+  const methods = useForm();
+
   const handleChange = (e) => {
+   
+
     if (e.target.name === "pan_card") {
       setPanCard(e.target.files[0]);
     }
@@ -20,7 +29,17 @@ function Register() {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
   console.log(panCard, "panCard");
+
+
+  const onSubmit = ((data) => {
+    console.log(data);
+    methods.reset();
+    setSuccess(true);
+   
+  });
+
   const handleClick = () => {
+
     formData.append("pan_card", panCard);
     formData.append("aadhar_card", aadharCard);
     // Append string values to the FormData object
@@ -49,6 +68,7 @@ function Register() {
         toast.error(err.response.data.error);
       });
   };
+  
   return (
     <div>
       <Toaster />
@@ -68,7 +88,9 @@ function Register() {
               </div>
             </div>
             <div className="flex justify-center self-center  z-10">
-              <div className="p-12 bg-login-box mx-auto max-[576px]:p-8">
+            <FormProvider {...methods}>
+
+              <form className="p-12 bg-login-box mx-auto max-[576px]:p-8">
                 <div className="mb-4">
                   <h3 className="font-semibold text-2xl text-gray-800">
                     Create Account
@@ -77,7 +99,7 @@ function Register() {
                 <div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
                         First Name
                       </label>
                       <input
@@ -87,10 +109,14 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your First Name"
-                      />
+                      /> */}
+                      <Input
+                          {...name_validation}
+                          onChange={(e) => console.log(e, "sdcvcdcdschsdcsvchgsdvghdscv")}
+                        />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Last Name
                       </label>
                       <input
@@ -100,12 +126,15 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your Last Name"
-                      />
+                      /> */}
+                      <Input
+                          {...last_name_validation}
+                        />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Email
                       </label>
                       <input
@@ -115,10 +144,14 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="email"
                         placeholder="Enter Your Email Address"
-                      />
+                      /> */}
+                      <Input
+                          {...email_validation}
+                          
+                        />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Mobile Number
                       </label>
                       <input
@@ -128,7 +161,12 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="tel"
                         placeholder="Enter Your mobile number"
-                      />
+                      /> */}
+                                   <Input
+                          {...mobilenum_validation}
+                          
+                        />
+                      
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
@@ -144,6 +182,7 @@ function Register() {
                         type="password"
                         placeholder="Password"
                       />
+                     
                     </div>
                     <div>
                       <label className="text-sm font-medium text-gray-700 tracking-wide">
@@ -172,6 +211,11 @@ function Register() {
                         name="pan_card"
                         className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none "
                       />
+                                   {/* <Input
+                          {...pancard_validation}
+                          
+                        /> */}
+                      
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-sm font-medium text-gray-700 tracking-wide">
@@ -185,13 +229,20 @@ function Register() {
                         name="aadhar_card"
                         className="w-full text-base pr-2 border  border-gray-300 rounded-lg focus:outline-none"
                       />
+                                  {/* <Input
+                          {...aadharcard_validation}
+                          
+                        /> */}
                     </div>
                   </div>
                 </div>
                 <div className="mt-8">
                   <div>
                     <button
-                      onClick={() => handleClick()}
+                      onClick={() => {
+                        handleClick()
+                        onSubmit()
+                      }}
                       type="submit"
                       className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                     >
@@ -209,7 +260,9 @@ function Register() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </form>
+              </FormProvider>
+
             </div>
           </div>
         </div>
