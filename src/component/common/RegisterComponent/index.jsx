@@ -99,7 +99,7 @@ function Register() {
                 <div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
-                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         First Name
                       </label>
                       <input
@@ -109,14 +109,14 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your First Name"
-                      /> */}
-                      <Input
+                      />
+                      {/* <Input
                           {...name_validation}
                           onChange={(e) => console.log(e, "sdcvcdcdschsdcsvchgsdvghdscv")}
-                        />
+                        /> */}
                     </div>
                     <div>
-                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Last Name
                       </label>
                       <input
@@ -126,15 +126,15 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your Last Name"
-                      /> */}
-                      <Input
+                      />
+                      {/* <Input
                           {...last_name_validation}
-                        />
+                        /> */}
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
-                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Email
                       </label>
                       <input
@@ -144,14 +144,14 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="email"
                         placeholder="Enter Your Email Address"
-                      /> */}
-                      <Input
+                      />
+                      {/* <Input
                           {...email_validation}
                           
-                        />
+                        /> */}
                     </div>
                     <div>
-                      {/* <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
                         Mobile Number
                       </label>
                       <input
@@ -161,11 +161,11 @@ function Register() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="tel"
                         placeholder="Enter Your mobile number"
-                      /> */}
-                                   <Input
+                      />
+                                   {/* <Input
                           {...mobilenum_validation}
                           
-                        />
+                        /> */}
                       
                     </div>
                   </div>
