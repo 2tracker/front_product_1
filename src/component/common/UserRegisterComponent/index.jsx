@@ -3,44 +3,52 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../../utils/Constant/constant";
 import toast, { Toaster } from 'react-hot-toast';
+import {MdArrowBackIos} from 'react-icons/md'
 
 function UserRegister() {
   const [registerData, setRegisterData] = useState([]);
-  const [panCard, setPanCard] = useState([]);
+  const [profile, setProfile] = useState([]);
   const [aadharCard, setAadharCard] = useState([]);
+  const [nextPage,setNextPage] = useState(false)
   const navigate = useNavigate();
   const formData = new FormData();
   const handleChange = (e) => {
-    if (e.target.name === "pan_card") {
-      setPanCard(e.target.files[0]);
+    if (e.target.name === "profile_photo") {
+      setProfile(e.target.files[0]);
     }
     if (e.target.name === "aadhar_card") {
       setAadharCard(e.target.files[0]);
     }
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
-  console.log(panCard, "panCard");
+  console.log(registerData,"registerData");
   const handleClick = () => {
-    formData.append("pan_card", panCard);
-    formData.append("aadhar_card", aadharCard);
+    formData.append("profilePhoto", profile);
+    formData.append("aadharCard", aadharCard);
     // Append string values to the FormData object
-    formData.append("first_name", registerData.first_name);
-    formData.append("last_name", registerData?.last_name);
+    formData.append("firstName", registerData.first_name);
+    formData.append("lastName", registerData?.last_name);
     formData.append("email", registerData?.email);
-    formData.append("mobile_number", registerData?.mobile_number);
+    formData.append("mobileNumber", registerData?.mobile_number);
     formData.append("password", registerData?.password);
     formData.append("confirm_password", registerData?.confirm_password);
+    formData.append("salary", registerData?.salary);
+    formData.append("income", registerData?.income);
+    formData.append("totalTraineePeriods", registerData?.totalTraineePeriods);
+    formData.append("incrementMonths", registerData?.incrementMonths);
+    formData.append("incrementSalary", registerData?.incrementSalary);
+    formData.append("DOB", registerData?.DOB);
     axios
-      .post(`${BASE_URL}/admin/register`, formData, {
+      .post(`${BASE_URL}/user/register`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
         if (res.data.message) {
-          toast.success(res.data.message);
+          toast.success('User Register Successfully');
           setTimeout(() => {
-            navigate("/");
+            navigate("/dashboard");
           }, [4000]);
         }
       })
@@ -70,10 +78,14 @@ function UserRegister() {
             <div className="flex justify-center self-center  z-10">
               <div className="p-12 bg-login-box mx-auto max-[576px]:p-8">
                 <div className="mb-4">
+                  {nextPage ? 
+                  <div className="flex items-center mb-4 bg-white justify-center py-1 rounded-lg w-[80px] cursor-pointer" onClick={()=>{setNextPage(false)}}><MdArrowBackIos/>Back</div>:""}
                   <h3 className="font-semibold text-2xl text-gray-800">
                    User Create Account
                   </h3>
                 </div>
+                {!nextPage ? 
+                <>
                 <div>
                   <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
                     <div>
@@ -84,6 +96,7 @@ function UserRegister() {
                         name="first_name"
                         onChange={(e) => handleChange(e)}
                         id="first_name"
+                        value={registerData.first_name}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your First Name"
@@ -97,6 +110,7 @@ function UserRegister() {
                         onChange={(e) => handleChange(e)}
                         name="last_name"
                         id="last_name"
+                        value={registerData.last_name}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="text"
                         placeholder="Enter Your Last Name"
@@ -111,6 +125,7 @@ function UserRegister() {
                       <input
                         onChange={(e) => handleChange(e)}
                         name="email"
+                        value={registerData.email}
                         id="email"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="email"
@@ -123,6 +138,7 @@ function UserRegister() {
                       </label>
                       <input
                         onChange={(e) => handleChange(e)}
+                        value={registerData.mobile_number}
                         name="mobile_number"
                         id="mobile_number"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
@@ -139,6 +155,7 @@ function UserRegister() {
                       <input
                         onChange={(e) => handleChange(e)}
                         name="password"
+                        value={registerData.password}
                         id="password"
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="password"
@@ -153,6 +170,7 @@ function UserRegister() {
                         onChange={(e) => handleChange(e)}
                         name="confirm_password"
                         id="confirm_password"
+                        value={registerData.confirm_password}
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="password"
                         placeholder="Password"
@@ -192,11 +210,11 @@ function UserRegister() {
                 <div className="mt-8">
                   <div>
                     <button
-                      onClick={() => handleClick()}
+                      onClick={() => setNextPage(true)}
                       type="submit"
                       className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                     >
-                      Sign Up
+                      Next
                     </button>
                   </div>
                   <div>
@@ -209,7 +227,121 @@ function UserRegister() {
                       </Link>
                     </p>
                   </div>
+                </div></>:
+                <>
+                <div>
+                  <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      Salary
+                      </label>
+                      <input
+                        name="salary"
+                        defaultValue={registerData?.salary}
+                        onChange={(e) => handleChange(e)}
+                        id="salary"
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="text"
+                        placeholder="Enter Your Salary"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      Income
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="income"
+                        id="income"
+                        value={registerData.income}
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="text"
+                        placeholder="Enter Your Income"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      Total Trainee Period
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="totalTraineePeriods"
+                        id="totalTraineePeriods"
+                        value={registerData.totalTraineePeriods}
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="text"
+                        placeholder="Enter Your Total Trainee Period"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      Increment Months
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="incrementMonths"
+                        id="incrementMonths"
+                        value={registerData.incrementMonths}
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="tel"
+                        placeholder="Enter Your Increment Months"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      Increment Salary
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="incrementSalary"
+                        id="incrementSalary"
+                        value={registerData.incrementSalary}
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="text"
+                        placeholder="Enter Your Increment Salary"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      DOB
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="DOB"
+                        id="DOB"
+                        value={registerData.DOB}
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="date"
+                        placeholder="DOB"
+                      />
+                    </div>
+                  </div>
                 </div>
+                <div className="mt-8">
+                <div>
+                  <button
+                    onClick={() => handleClick()}
+                    type="submit"
+                    className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+                <div>
+                  <p className="text-center text-[12px] pt-4">
+                    If You Have Account{" "}
+                    <Link to="/">
+                      <span className="text-blue-400 text-[14px] cursor-pointer">
+                        Sign in
+                      </span>{" "}
+                    </Link>
+                  </p>
+                </div>
+              </div></>}
               </div>
             </div>
           </div>
