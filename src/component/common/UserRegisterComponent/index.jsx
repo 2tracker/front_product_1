@@ -38,6 +38,7 @@ function UserRegister() {
     formData.append("incrementMonths", registerData?.incrementMonths);
     formData.append("incrementSalary", registerData?.incrementSalary);
     formData.append("DOB", registerData?.DOB);
+    formData.append("role", registerData?.role);
     axios
       .post(`${BASE_URL}/user/register`, formData, {
         headers: {
@@ -317,6 +318,22 @@ function UserRegister() {
                         className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
                         type="date"
                         placeholder="DOB"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mb-3 max-[479px]:grid-cols-1">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 tracking-wide">
+                      Role
+                      </label>
+                      <input
+                        onChange={(e) => handleChange(e)}
+                        name="role"
+                        id="role"
+                        value={registerData.role}
+                        className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none "
+                        type="text"
+                        placeholder="Enter Your Role(Profession)"
                       />
                     </div>
                   </div>
