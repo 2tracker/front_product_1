@@ -49,3 +49,8 @@
 .toggle.active span:nth-child(3) {
     transform: translateX(60px);
 }
+
+
+.user-table-data{
+    box-shadow: none !important;
+}
