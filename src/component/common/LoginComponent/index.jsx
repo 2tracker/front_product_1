@@ -34,6 +34,8 @@ function Login() {
         }, [2000]);
         toast.success(`Send OTP in your E-mail : ${res.data.otp}`);
       }
+    }).catch((err)=>{
+      console.log('SEND OTP ERROR :-' ,err)
     });
   });
 

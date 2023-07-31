@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { BiArrowBack } from "react-icons/bi";
 import { BsSearch , BsChevronDown } from "react-icons/bs";
@@ -10,13 +10,14 @@ import { DashboardMenus } from "../../../utils/alljsonfile/dashboardData";
 function DashBorad() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [submenuOpen, setSubmenuOpen] = useState(false);
+  const location = useLocation()
 
   return (
     <div>
       <>
         <div className="flex">
           <div
-            className={`bg-gradient-to-br from-blue-100 to-silver-50 h-screen p-5 pt-8 ${
+            className={`bg-white shadow-lg h-screen p-5 pt-8 ${
               sidebarOpen ? "w-64" : "w-20"
             } duration-300  relative`}
           >
@@ -46,7 +47,7 @@ function DashBorad() {
               {DashboardMenus?.map((menudata, index) => {
                 return(
                   <>
-                    <li key={index} className={`text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md  ${menudata?.spacing ? "mt-9" : "mt-2"}`}>
+                    <li key={index} className={`text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 ${location.pathname === `/${menudata.title.toLowerCase()}` ? 'bg-blue-400 text-white' : 'hover:bg-blue-400 hover:text-white'}  rounded-md  ${menudata?.spacing ? "mt-9" : "mt-2"}`}>
                       <span className="text-2xl block float-left">
                         {menudata?.icon ? menudata?.icon : <RiDashboardFill/>}
                       </span>

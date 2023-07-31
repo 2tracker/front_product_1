@@ -243,7 +243,7 @@ function Register() {
                         handleClick()
                         onSubmit()
                       }}
-                      type="submit"
+                      type="button"
                       className="w-full flex justify-center bg-blue-400  hover:bg-blue-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500"
                     >
                       Sign Up
