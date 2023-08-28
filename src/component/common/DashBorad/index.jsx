@@ -6,6 +6,7 @@ import { BsSearch , BsChevronDown } from "react-icons/bs";
 import { RiDashboardFill } from "react-icons/ri";
 import { DashboardMenus } from "../../../utils/alljsonfile/dashboardData";
 import Layout from "../Layout";
+import BirthDayTable from "./BirthDayTable";
 
 
 function DashBorad() {
@@ -15,7 +16,9 @@ function DashBorad() {
     <Layout>
       <div className="container mx-auto">
         <div className="p-6">
-        <div>dashboardData</div>
+        <div>
+          <BirthDayTable/>
+        </div>
         </div>
       </div>
     </Layout>
