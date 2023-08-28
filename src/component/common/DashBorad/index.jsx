@@ -13,7 +13,11 @@ function DashBorad() {
 
   return (
     <Layout>
-      Dashboard
+      <div className="container mx-auto">
+        <div className="p-6">
+        <div>dashboardData</div>
+        </div>
+      </div>
     </Layout>
   );
 }

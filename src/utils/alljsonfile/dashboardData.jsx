@@ -1,26 +1,71 @@
-import { BsFillImageFill , BsReverseLayoutTextSidebarReverse , BsPerson } from "react-icons/bs";
-import { AiOutlineFileText , AiOutlineBarChart , AiOutlineMail , AiOutlineSetting , AiOutlineLogout } from "react-icons/ai";
+import {
+  BsFillImageFill,
+  BsReverseLayoutTextSidebarReverse,
+  BsPerson,
+} from "react-icons/bs";
+import {
+  AiOutlineFileText,
+  AiOutlineBarChart,
+  AiOutlineMail,
+  AiOutlineSetting,
+  AiOutlineLogout,
+} from "react-icons/ai";
 
 export const DashboardMenus = [
-  { title: "Dashboard" },
-  { title: "Pages" , icon: <AiOutlineFileText />},
-  { title: "Media", spacing: true  , icon: <BsFillImageFill />},
   {
-    title: "Projects",
-    icon: <BsReverseLayoutTextSidebarReverse />,
+    title: "Dashboard",
     submenu: true,
     submenuItems: [
-      { title: "Submenu 1" },
-      { title: "Submenu 2" },
-      { title: "Submenu 3" },
+      { title: "Employes Birthday List", linkpage: "birthdaylist" },
+      { title: "Graph", linkpage: "graphpage" },
+      { title: "Additional Posts", linkpage: "postsadditional" },
     ],
   },
 
-  { title: "Analytics" , icon: <AiOutlineBarChart /> },
-  { title: "Inbox" , icon: <AiOutlineMail /> },
+  {
+    title: "Task",
+    icon: <AiOutlineBarChart />,
+    submenutask: true,
+    submenuItemstask: [
+      { title: "Tasklist", linkpage: "tasklist" },
+      { title: "Add Task", linkpage: "addtask" },
+      { title: "Edit Task", linkpage: "edittask" },
+      { title: "Delete Task", linkpage: "deletetask" },
+      { title: "View Task", linkpage: "viewtask" },
+      { title: "Add Credientials", linkpage: "addcredient" },
+    ],
+  },
+  {
+    title: "Daily Report",
+    icon: <AiOutlineMail />,
+    submenureport: true,
+    submenuReportItem: [
+      { title: "Activity", linkpage: "activitylist" },
+      { title: "Screenshot List", linkpage: "screenshotlist" },
+      { title: "View Screenshot", linkpage: "viewscreenshot" },
+    ],
+  },
+  {
+    title: "Attendences & Activity",
+    icon: <AiOutlineMail />,
+    submenuActivity: true,
+    submenuActivityItem: [
+      { title: "Daily Attendences Calender", linkpage: "attendCalander" },
+      { title: "Weekly Attendences Activity", linkpage: "weeklyattendence" },
+    ],
+  },
+  {
+    title: "Chat & Posts",
+    icon: <BsPerson />,
+    submenuChat: true,
+    submenuChatItem: [
+      { title: "Chat & Group Chat", linkpage: "chatbar" },
+      { title: "Posts List", linkpage: "postlist" },
+      { title: "Add Posts", linkpage: "addposts" },
+      { title: "Edit Posts", linkpage: "editposts" },
+    ],
+  },
+  { title: "Setting", icon: <AiOutlineSetting /> },
 
-  { title: "Profile", spacing: true ,icon: <BsPerson />  },
-  { title: "Setting" , icon: <AiOutlineSetting />},
-
-  { title: "Logout" , icon: <AiOutlineLogout />},
+  { title: "Logout", icon: <AiOutlineLogout /> },
 ];
