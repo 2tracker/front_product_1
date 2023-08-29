@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { GetDOB } from "../../../../Api/dashboardApi";
+import moment from 'moment';
 
 
 
@@ -19,10 +21,16 @@ function BirthDayTable() {
     setAge(event.target.value);
   };
 
+  useEffect(()=>{
+    GetDOB().then((res)=>{
+      setGeDob(res)
+    }).catch((err)=>{
+      console.log(err,"DOB ERROR");
+    })
+  },[])
  
   return (
-    <div className="container mx-auto">
-      <div className="p-6">
+
         <div className=" max-[576px]:grid-cols-1  gap-6">
           <div className=" rounded-lg border p-[30px] ">
             <div className="flex items-center justify-between pb-5">
@@ -48,7 +56,9 @@ function BirthDayTable() {
                     </TableRow>
                   </TableHead>
                   <TableBody className="h-full min-h-[300px] !overflow-y-auto ">
-
+                  {getDob.map((item,index)=>{
+                    return (
+                      <>
                       <TableRow
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
@@ -57,27 +67,30 @@ function BirthDayTable() {
                           <div className="w-10 h-10 rounded-full ">
                             <img
                               alt="profileImage"
-                              src="/images/user-2.jpg"
+                              src="/assets/user-1.jpg"
                               className="rounded-full"
                             />
                           </div>
                           <div>
                             <p className="text-[14px] font-semibold text-[#2a3547]">
-                              fgbffb
+                              {item?.firstName} {item?.lastName}
                             </p>
                             <p className="text-[12px] text-[#2a3547]">
-                              fbfbb
+                              {item?.role}
                             </p>
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell>ccdcs</TableCell>
-                      <TableCell>5 Days</TableCell>
-                    
+                      <TableCell>{moment(item?.DOB).format('DD/MM/YYYY')}</TableCell>
+                      <TableCell>{item?.daysToBday} Days</TableCell>
+                      <TableCell><button className={`w-[130px] h-[30px] ${item?.daysToBday > 130 ? 'text-orange-600 bg-orange-200' : 'text-blue-500 bg-blue-200'} ${item?.daysToBday === 0 && 'text-blue-500 bg-white'} font-semibold text-[16px]   rounded-2xl`}>
+                        {item?.daysToBday > 130 ? 'Low' : 'Something' } {item?.daysToBday === 0 && 'My Birthday'}
+                        </button></TableCell>
                       
                     </TableRow>
-                
-       
+                      </>
+                    )
+                  })}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -85,8 +98,6 @@ function BirthDayTable() {
           </div>
 
         </div>
-      </div>
-    </div>
   );
 }
 

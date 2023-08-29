@@ -7,6 +7,7 @@ import { RiDashboardFill } from "react-icons/ri";
 import { DashboardMenus } from "../../../utils/alljsonfile/dashboardData";
 import Layout from "../Layout";
 import BirthDayTable from "./BirthDayTable";
+import ChatGraphCom from "./ChatGraphCom";
 
 
 function DashBorad() {
@@ -16,9 +17,8 @@ function DashBorad() {
     <Layout>
       <div className="container mx-auto">
         <div className="p-6">
-        <div>
           <BirthDayTable/>
-        </div>
+          <ChatGraphCom/>
         </div>
       </div>
     </Layout>
