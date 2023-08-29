@@ -9,7 +9,7 @@ class DonutChart extends Component {
         type: 'pie',
       },
       title: {
-        text: 'Donut Chart Example',
+        text: 'Weekly Report Graph',
       },
       plotOptions: {
         pie: {

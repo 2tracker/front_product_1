@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsSearch, BsChevronDown } from "react-icons/bs";
 import { RiDashboardFill } from "react-icons/ri";
 import { DashboardMenus } from "../../../utils/alljsonfile/dashboardData";
@@ -125,12 +125,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       {menudata?.submenuItems?.map((submenuItem, index) => {
                         return (
                           <>
-                            <li
-                              key={index}
-                              className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
-                            >
-                              {submenuItem?.title}
-                            </li>
+                            <Link to={`/${submenuItem?.linkpage}`}>
+                              <li
+                                key={index}
+                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                              >
+                                {submenuItem?.title}
+                              </li>
+                            </Link>
                           </>
                         );
                       })}
@@ -142,62 +144,78 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       {menudata?.submenuItemstask?.map((submenuItem, index) => {
                         return (
                           <>
-                            <li
-                              key={index}
-                              className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
-                            >
-                              {submenuItem?.title}
-                            </li>
+                            <Link to={`/${submenuItem?.linkpage}`}>
+                              <li
+                                key={index}
+                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                              >
+                                {submenuItem?.title}
+                              </li>
+                            </Link>
                           </>
                         );
                       })}
                     </ul>
                   )}
 
-                  {menudata?.submenureport && submenuReportOpen && sidebarOpen && (
-                    <ul>
-                      {menudata?.submenuReportItem?.map((submenuItem, index) => {
-                        return (
-                          <>
-                            <li
-                              key={index}
-                              className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
-                            >
-                              {submenuItem?.title}
-                            </li>
-                          </>
-                        );
-                      })}
-                    </ul>
-                  )}
+                  {menudata?.submenureport &&
+                    submenuReportOpen &&
+                    sidebarOpen && (
+                      <ul>
+                        {menudata?.submenuReportItem?.map(
+                          (submenuItem, index) => {
+                            return (
+                              <>
+                                <Link to={`/${submenuItem?.linkpage}`}>
+                                  <li
+                                    key={index}
+                                    className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                  >
+                                    {submenuItem?.title}
+                                  </li>
+                                </Link>
+                              </>
+                            );
+                          }
+                        )}
+                      </ul>
+                    )}
 
-                  {menudata?.submenuActivity && submenuActivityOpen && sidebarOpen && (
-                    <ul>
-                      {menudata?.submenuActivityItem?.map((submenuItem, index) => {
-                        return (
-                          <>
-                            <li
-                              key={index}
-                              className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
-                            >
-                              {submenuItem?.title}
-                            </li>
-                          </>
-                        );
-                      })}
-                    </ul>
-                  )}
+                  {menudata?.submenuActivity &&
+                    submenuActivityOpen &&
+                    sidebarOpen && (
+                      <ul>
+                        {menudata?.submenuActivityItem?.map(
+                          (submenuItem, index) => {
+                            return (
+                              <>
+                                <Link to={`/${submenuItem?.linkpage}`}>
+                                  <li
+                                    key={index}
+                                    className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                  >
+                                    {submenuItem?.title}
+                                  </li>
+                                </Link>
+                              </>
+                            );
+                          }
+                        )}
+                      </ul>
+                    )}
                   {menudata?.submenuChat && submenuChatOpen && sidebarOpen && (
                     <ul>
                       {menudata?.submenuChatItem?.map((submenuItem, index) => {
                         return (
                           <>
-                            <li
-                              key={index}
-                              className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
-                            >
-                              {submenuItem?.title}
-                            </li>
+                            <Link to={`/${submenuItem?.linkpage}`}>
+                              <li
+                                key={index}
+                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                              >
+                                {submenuItem?.title}
+                              </li>
+                            </Link>
                           </>
                         );
                       })}

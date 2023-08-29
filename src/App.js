@@ -5,6 +5,7 @@ import Registrationpage from './Page/Registrationpage';
 import UserRegistrationpage from './Page/UserRegistrationpage';
 import Dashboardpage from './Page/Dashboard';
 import Incomepage from './Page/Incomepage';
+import Taskpage from './Page/taskpage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboardpage/>}/>
         <Route path='/user-register' element={<UserRegistrationpage/>}/>
         <Route path='/incometable' element={<Incomepage/>}/>
+        <Route path='/tasklist' element={<Taskpage/>}/>
       </Routes>
     </div>
   );

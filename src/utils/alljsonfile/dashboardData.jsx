@@ -25,6 +25,7 @@ export const DashboardMenus = [
   {
     title: "Task",
     icon: <AiOutlineBarChart />,
+    linkpage: "task",
     submenutask: true,
     submenuItemstask: [
       { title: "Tasklist", linkpage: "tasklist" },
