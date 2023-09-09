@@ -50,6 +50,8 @@ function Login() {
         if (res.status === 200) {
           toast.success(res.data.MSG);
           localStorage.setItem("Token", res.data.Token);
+          localStorage.setItem('user_id',JSON.stringify(res?.data?.data))
+
           setTimeout(() => {
             navigate("/dashboard");
           }, [2000]);

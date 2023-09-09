@@ -7,8 +7,7 @@ function Layout({ children }) {
 
     return (
         <div>
-                        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
-
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
             <div className="flex h-full">
           <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
           <div className=" w-full">
@@ -16,6 +15,10 @@ function Layout({ children }) {
           </div>
         </div>
         </div>
+
+
+
+
     );
 }
 

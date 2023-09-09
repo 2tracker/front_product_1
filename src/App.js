@@ -1,4 +1,5 @@
 import './App.css';
+import './style/globle.css';
 import { Route, Routes } from 'react-router-dom';
 import Loginpage from './Page/Loginpage';
 import Registrationpage from './Page/Registrationpage';

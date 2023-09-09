@@ -13,10 +13,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
 
   return (
-    <div>
-      <div className="flex">
+    <div >
         <div
-          className={`bg-white shadow-lg h-screen p-5 pt-8 ${
+          className={`bg-white shadow-lg border-r h-full p-5 pt-8 ${
             sidebarOpen ? "w-64" : "w-20"
           } duration-300  relative`}
         >
@@ -226,7 +225,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             })}
           </ul>
         </div>
-      </div>
     </div>
   );
 }
