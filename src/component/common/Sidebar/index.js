@@ -127,7 +127,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                             <Link to={`/${submenuItem?.linkpage}`}>
                               <li
                                 key={index}
-                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5 my-1"
                               >
                                 {submenuItem?.title}
                               </li>
@@ -146,7 +146,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                             <Link to={`/${submenuItem?.linkpage}`}>
                               <li
                                 key={index}
-                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5 my-1"
                               >
                                 {submenuItem?.title}
                               </li>
@@ -168,7 +168,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                                 <Link to={`/${submenuItem?.linkpage}`}>
                                   <li
                                     key={index}
-                                    className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                    className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5 my-1"
                                   >
                                     {submenuItem?.title}
                                   </li>
@@ -191,7 +191,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                                 <Link to={`/${submenuItem?.linkpage}`}>
                                   <li
                                     key={index}
-                                    className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                    className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5 my-1"
                                   >
                                     {submenuItem?.title}
                                   </li>
@@ -210,7 +210,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                             <Link to={`/${submenuItem?.linkpage}`}>
                               <li
                                 key={index}
-                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5"
+                                className="text-black text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-blue-400 hover:text-white rounded-md px-5 my-1"
                               >
                                 {submenuItem?.title}
                               </li>

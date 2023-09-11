@@ -9,6 +9,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { GetDOB } from "../../../../Api/dashboardApi";
 import moment from 'moment';
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 
 
@@ -28,6 +30,8 @@ function BirthDayTable() {
       console.log(err,"DOB ERROR");
     })
   },[])
+
+  const pathName = window.location.pathname
  
   return (
 
@@ -94,8 +98,21 @@ function BirthDayTable() {
                   </TableBody>
                 </Table>
               </TableContainer>
+       
             </div>
-          </div>
+            {pathName === '/birthdaylist' ? 
+          ''
+          :
+            
+            <div className="text-center">
+            <Link to={"/birthdaylist"} className="bg-blue-500 px-5 py-2 inline-flex mt-4 w-auto rounded-lg text-white">
+              <Button className=" hover:rounded-lg  hover:inline-flex !text-white !p-0 !h-auto"> 
+              View All
+              </Button>
+              </Link>
+              </div>
+          }
+              </div>
 
         </div>
   );
