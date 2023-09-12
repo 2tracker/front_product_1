@@ -7,8 +7,8 @@ import UserRegistrationpage from './Page/UserRegistrationpage';
 import Dashboardpage from './Page/Dashboard';
 import Incomepage from './Page/Incomepage';
 import Taskpage from './Page/taskpage';
-import Birthdatlist from './Page/birthdatlist';
-import Myprofile from './Page/myprofile';
+import Birthdatlist from './Page/Birthdatlist'
+import AddNewTask from './Page/AddNewTask';
 
 function App() {
   return (
@@ -21,9 +21,7 @@ function App() {
         <Route path='/incometable' element={<Incomepage/>}/>
         <Route path='/tasklist' element={<Taskpage/>}/>
         <Route path='/birthdaylist' element={<Birthdatlist/>}/>
-        <Route path='/myprofile' element={<Myprofile/>}/>
-
-
+        <Route path='/add-task' element={<AddNewTask/>}/>
       </Routes>
     </div>
   );

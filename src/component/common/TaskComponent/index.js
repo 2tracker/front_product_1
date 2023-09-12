@@ -21,9 +21,11 @@ function TaskComponent(props) {
               <h5 className="text-[18px] font-medium text-left">
                 Task
               </h5>
+              <Link to={'/add-task'}>
               <Button>
             + Add Task 
               </Button>
+              </Link>
             </div>
                 <div className='rounded-lg border p-[30px]'>
                 <div>
