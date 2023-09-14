@@ -29,10 +29,10 @@ export const DashboardMenus = [
     submenutask: true,
     submenuItemstask: [
       { title: "Tasklist", linkpage: "tasklist" },
-      { title: "Add Task", linkpage: "addtask" },
-      { title: "Edit Task", linkpage: "edittask" },
-      { title: "Delete Task", linkpage: "deletetask" },
-      { title: "View Task", linkpage: "viewtask" },
+      { title: "Add Task", linkpage: "add-task" },
+      // { title: "Edit Task", linkpage: "edittask" },
+      // { title: "Delete Task", linkpage: "deletetask" },
+      // { title: "View Task", linkpage: "viewtask" },
       { title: "Add Credientials", linkpage: "addcredient" },
     ],
   },
@@ -43,7 +43,7 @@ export const DashboardMenus = [
     submenuReportItem: [
       { title: "Activity", linkpage: "activitylist" },
       { title: "Screenshot List", linkpage: "screenshotlist" },
-      { title: "View Screenshot", linkpage: "viewscreenshot" },
+      // { title: "View Screenshot", linkpage: "viewscreenshot" },
     ],
   },
   {
@@ -63,7 +63,7 @@ export const DashboardMenus = [
       { title: "Chat & Group Chat", linkpage: "chatbar" },
       { title: "Posts List", linkpage: "postlist" },
       { title: "Add Posts", linkpage: "addposts" },
-      { title: "Edit Posts", linkpage: "editposts" },
+      // { title: "Edit Posts", linkpage: "editposts" },
     ],
   },
   { title: "Setting", icon: <AiOutlineSetting /> },

@@ -7,7 +7,7 @@ import UserRegistrationpage from './Page/UserRegistrationpage';
 import Dashboardpage from './Page/Dashboard';
 import Incomepage from './Page/Incomepage';
 import Taskpage from './Page/taskpage';
-import Birthdatlist from './Page/Birthdatlist'
+import Birthdatlist from './Page/birthdatlist'
 import AddNewTask from './Page/AddNewTask';
 
 function App() {
