@@ -9,6 +9,8 @@ import Incomepage from './Page/Incomepage';
 import Taskpage from './Page/taskpage';
 import Birthdatlist from './Page/birthdatlist'
 import AddNewTask from './Page/AddNewTask';
+import AddPost from './Page/AddPost';
+import PostList from './Page/PostList';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path='/tasklist' element={<Taskpage/>}/>
         <Route path='/birthdaylist' element={<Birthdatlist/>}/>
         <Route path='/add-task' element={<AddNewTask/>}/>
+        <Route path='/addposts' element={<AddPost/>}/>
+        <Route path='/postlist' element={<PostList/>}/>
       </Routes>
     </div>
   );
